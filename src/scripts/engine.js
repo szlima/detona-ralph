@@ -3,12 +3,14 @@ const state= {
         squares: document.querySelectorAll(".square"),
         enemy: document.querySelector(".enemy"),
         timeLeft: document.querySelector("#time-left"),
-        score: document.querySelector("#score")
+        score: document.querySelector("#score"),
+        lives: document.querySelector("#lives")
     },
     values: {
         hitPosition: 0,
         result: 0,
-        currentTime: 60
+        currentTime: 60,
+        currentLives: 3
     },
     actions: {
         timerId: setInterval(randomSquare, 1000),
@@ -20,11 +22,8 @@ function countDown(){
     state.values.currentTime--;
     state.view.timeLeft.textContent= state.values.currentTime;
 
-    if(state.values.currentTime <= 0){
-        clearInterval(state.actions.countDownTimerId);
-        clearInterval(state.actions.timerId);
-        alert(`Game Over! O seu resultado foi: ${state.values.result}`);
-    }
+    if(state.values.currentTime <= 0)
+        gameOver();
 };
 
 function playSound(audioName){
@@ -52,9 +51,22 @@ function addListenerHitBox(){
                 state.view.score.textContent= state.values.result;
                 state.values.hitPosition= null;
                 playSound("hit");
+            }else{
+                state.values.currentLives--;
+                state.view.lives.textContent= state.values.currentLives;
+                playSound("fail");
+
+                if(state.values.currentLives <= 0)
+                    gameOver();
             }
         });
     });
+};
+
+function gameOver(){
+    clearInterval(state.actions.countDownTimerId);
+    clearInterval(state.actions.timerId);
+    alert(`Game Over! O seu resultado foi: ${state.values.result}`);
 };
 
 function init(){
