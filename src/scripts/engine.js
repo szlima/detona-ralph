@@ -4,7 +4,8 @@ const state= {
         enemy: document.querySelector(".enemy"),
         timeLeft: document.querySelector("#time-left"),
         score: document.querySelector("#score"),
-        lives: document.querySelector("#lives")
+        lives: document.querySelector("#lives"),
+        panel: document.querySelector(".panel")
     },
     values: {
         hitPosition: 0,
@@ -63,10 +64,17 @@ function addListenerHitBox(){
     });
 };
 
+function disableHitBox(){
+   const disabler= document.createElement("div");
+   disabler.classList.add("disabler");
+   state.view.panel.appendChild(disabler);
+};
+
 function gameOver(){
     clearInterval(state.actions.countDownTimerId);
     clearInterval(state.actions.timerId);
     alert(`Game Over! O seu resultado foi: ${state.values.result}`);
+    disableHitBox();
 };
 
 function init(){

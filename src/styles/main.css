@@ -18,7 +18,9 @@
 }
 
 .panel{
-    margin-top: 1rem;
+    position: relative;
+    padding-top: 1rem;
+    height: calc(100% - 90px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -57,4 +59,14 @@
 .menu-time h2:nth-child(2),
 .menu-score h2:nth-child(2){
     margin-top: 10px;
+}
+
+.disabler{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0000004D;
+    z-index: 1;
 }
