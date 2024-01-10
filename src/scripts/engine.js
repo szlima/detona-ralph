@@ -73,6 +73,7 @@ function disableHitBox(){
 function gameOver(){
     clearInterval(state.actions.countDownTimerId);
     clearInterval(state.actions.timerId);
+    playSound("gameOver");
     alert(`Game Over! O seu resultado foi: ${state.values.result}`);
     disableHitBox();
 };
