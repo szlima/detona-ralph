@@ -79,6 +79,7 @@ function gameOver(){
 
 function init(){
     addListenerHitBox();
+    alert("Prepare-se! O jogo vai começar!!");
 };
 
 init();
