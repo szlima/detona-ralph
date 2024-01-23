@@ -25,13 +25,13 @@ function countDown(){
 
     if(state.values.currentTime <= 0)
         gameOver();
-};
+}
 
 function playSound(audioName){
     let audio= new Audio(`./src/audios/${audioName}.m4a`);
     audio.volume= 0.2;
     audio.play();
-};
+}
 
 function randomSquare(){
     state.view.squares.forEach(square =>
@@ -42,7 +42,7 @@ function randomSquare(){
     const randomSquare= state.view.squares[randomNumber];
     randomSquare.classList.add("enemy");
     state.values.hitPosition= randomSquare.id;
-};
+}
 
 function addListenerHitBox(){
     state.view.squares.forEach(square => {
@@ -62,25 +62,33 @@ function addListenerHitBox(){
             }
         });
     });
-};
+}
 
-function disableHitBox(){
-   const disabler= document.createElement("div");
-   disabler.classList.add("disabler");
-   state.view.panel.appendChild(disabler);
-};
+function showResult(){
+
+    const result= document.createElement("div");
+    result.classList.add("result");
+    const para1= document.createElement("p");
+    para1.innerText= "Game Over!";
+    const para2= document.createElement("p");
+    para2.innerText= `O seu resultado foi: ${state.values.result}`;
+    result.appendChild(para1);
+    result.appendChild(para2);
+
+    state.view.panel.classList.add("disabler");
+    state.view.panel.appendChild(result);
+}
 
 function gameOver(){
     clearInterval(state.actions.countDownTimerId);
     clearInterval(state.actions.timerId);
     playSound("gameOver");
-    alert(`Game Over! O seu resultado foi: ${state.values.result}`);
-    disableHitBox();
-};
+    showResult();
+}
 
 function init(){
     addListenerHitBox();
     alert("Prepare-se! O jogo vai começar!!");
-};
+}
 
 init();

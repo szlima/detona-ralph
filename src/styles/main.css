@@ -61,7 +61,8 @@
     margin-top: 10px;
 }
 
-.disabler{
+.disabler::after{
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -69,4 +70,24 @@
     height: 100%;
     background-color: #0000004D;
     z-index: 1;
+}
+
+.result{
+    position: absolute;
+    top: 30%;
+    background-color: #000000E6;
+    color: #FFF;
+    padding: 20px 30px;
+    font-size: 1.5rem;
+    z-index: 2;
+}
+
+.result p:first-child{
+    color: #FF0000;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.result p{
+    text-align: center;
 }
