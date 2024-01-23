@@ -14,8 +14,8 @@ const state= {
         currentLives: 3
     },
     actions: {
-        timerId: setInterval(randomSquare, 1000),
-        countDownTimerId: setInterval(countDown, 1000),
+        timerId: null,
+        countDownTimerId: null,
     }
 };
 
@@ -75,26 +75,51 @@ function showResult(){
     result.appendChild(para1);
     result.appendChild(para2);
 
-    const restarter= document.createElement("button");
-    restarter.classList.add("restarter");
-    restarter.innerText= "Recomeçar jogo";
-    restarter.addEventListener("click", () => window.location.reload());
-
-    state.view.panel.classList.add("disabler");
     state.view.panel.appendChild(result);
-    state.view.panel.appendChild(restarter);
+}
+
+function showRestartButton(){
+    showButton("Recomeçar jogo", () => window.location.reload());
+}
+
+function showStartButton(){
+
+    showButton("Começar jogo", e => {
+        toggleHitBox();
+        state.view.panel.removeChild(e.target);
+        state.actions.timerId= setInterval(randomSquare, 1000);
+        state.actions.countDownTimerId= setInterval(countDown, 1000);
+    });
+}
+
+function showButton(text, action){
+    const button= document.createElement("button");
+    button.classList.add("button");
+    button.innerText= text;
+    button.addEventListener("click", action);
+
+    state.view.panel.appendChild(button);
+}
+
+function toggleHitBox(){
+    state.view.panel.classList.toggle("disabler");
 }
 
 function gameOver(){
     clearInterval(state.actions.countDownTimerId);
     clearInterval(state.actions.timerId);
     playSound("gameOver");
+
+    toggleHitBox();
     showResult();
+    showRestartButton();
 }
 
 function init(){
     addListenerHitBox();
-    alert("Prepare-se! O jogo vai começar!!");
+
+    toggleHitBox();
+    showStartButton();
 }
 
 init();

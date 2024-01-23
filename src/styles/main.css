@@ -74,7 +74,7 @@
 
 .result{
     position: absolute;
-    top: 30%;
+    top: 20%;
     background-color: #000000E6;
     color: #FFF;
     padding: 20px 30px;
@@ -92,9 +92,9 @@
     text-align: center;
 }
 
-.restarter{
+.button{
     position: absolute;
-    top: 60%;
+    top: 50%;
     background-color: #FF0000;
     color: #FFF;
     padding: 15px;
@@ -103,7 +103,7 @@
     border: 3px solid #FFF;
 }
 
-.restarter:hover{
+.button:hover{
     background-color: #000;
     color: #FF0000;
     border-color: #000;
