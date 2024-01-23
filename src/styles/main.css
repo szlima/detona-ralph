@@ -91,3 +91,21 @@
 .result p{
     text-align: center;
 }
+
+.restarter{
+    position: absolute;
+    top: 60%;
+    background-color: #FF0000;
+    color: #FFF;
+    padding: 15px;
+    font-size: 1.2rem;
+    z-index: 2;
+    border: 3px solid #FFF;
+}
+
+.restarter:hover{
+    background-color: #000;
+    color: #FF0000;
+    border-color: #000;
+    cursor: pointer;
+}

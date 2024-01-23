@@ -75,8 +75,14 @@ function showResult(){
     result.appendChild(para1);
     result.appendChild(para2);
 
+    const restarter= document.createElement("button");
+    restarter.classList.add("restarter");
+    restarter.innerText= "Recomeçar jogo";
+    restarter.addEventListener("click", () => window.location.reload());
+
     state.view.panel.classList.add("disabler");
     state.view.panel.appendChild(result);
+    state.view.panel.appendChild(restarter);
 }
 
 function gameOver(){
