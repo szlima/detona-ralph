@@ -35,7 +35,7 @@ function playSound(audioName){
 
 function randomSquare(){
     state.view.squares.forEach(square =>
-        square.classList.remove("enemy")
+        square.classList.remove("enemy", "hit")
     );
 
     const randomNumber= Math.floor(Math.random() * 9);
@@ -51,14 +51,17 @@ function addListenerHitBox(){
                 state.values.result++;
                 state.view.score.textContent= state.values.result;
                 state.values.hitPosition= null;
+                square.classList.add("hit");
                 playSound("hit");
             }else{
-                state.values.currentLives--;
-                state.view.lives.textContent= state.values.currentLives;
-                playSound("fail");
+                if(!square.classList.contains("hit")){
+                    state.values.currentLives--;
+                    state.view.lives.textContent= state.values.currentLives;
+                    playSound("fail");
 
-                if(state.values.currentLives <= 0)
-                    gameOver();
+                    if(state.values.currentLives <= 0)
+                        gameOver();
+                }
             }
         });
     });
